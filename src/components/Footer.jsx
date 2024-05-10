@@ -9,8 +9,8 @@ const Footer = () => {
         {/* dealer info */}
         <div className="text-center md:text-left mb-4 md:mb-0">
           <h2 className="text-xl font-bold">Lakes Auto Sales</h2>
-          <p className="text-sm">1234 Car St., Cityville, State, ZIP</p>
-          <p className="text-sm">Phone: (123) 456-7890</p>
+          <p className="text-sm">2240 Mannheim Rd, Melrose Park, IL, 60164</p>
+          <p className="text-sm">Phone: (847) 370-2940</p>
         </div>
 
         {/* routes */}
