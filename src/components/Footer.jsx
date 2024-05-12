@@ -1,7 +1,11 @@
 // Footer.jsx
-import { Facebook, Twitter, Instagram } from "lucide-react"; // Add other icons as needed
+import { Facebook, Twitter, MapPin } from "lucide-react"
+import { navItems } from "../constants"
 
 const Footer = () => {
+  const address = "2240 Mannheim Rd, Melrose Park, IL, 60164";
+  const mapsLink = "https://maps.app.goo.gl/CWsCpqBNpBhndztx7"; // lakes auto google page
+
   return (
     <footer className="bg-neutral-900 text-neutral-100 py-8">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4 md:px-8">
@@ -9,16 +13,17 @@ const Footer = () => {
         {/* dealer info */}
         <div className="text-center md:text-left mb-4 md:mb-0">
           <h2 className="text-xl font-bold">Lakes Auto Sales</h2>
-          <p className="text-sm">2240 Mannheim Rd, Melrose Park, IL, 60164</p>
-          <p className="text-sm">Phone: (847) 370-2940</p>
+          <p className="text-sm">{address}</p>
+          <p className="text-sm">Phone: (847) 370-2940</p> 
         </div>
 
         {/* routes */}
         <ul className="flex space-x-4 text-sm mb-4 md:mb-0">
-          <li><a href="/" className="hover:underline">Home</a></li>
-          <li><a href="/inventory" className="hover:underline">Inventory</a></li>
-          <li><a href="/about" className="hover:underline">About</a></li>
-          <li><a href="/contact" className="hover:underline">Contact</a></li>
+          {navItems.map((item, index) => (
+            <li key={index}>
+              <a href={item.href} className="hover:underline">{item.label}</a>
+            </li>
+          ))}
         </ul>
 
         {/* icons */}
@@ -29,8 +34,8 @@ const Footer = () => {
           <a href="https://twitter.com" aria-label="Twitter">
             <Twitter className="hover:text-blue-400" />
           </a>
-          <a href="https://instagram.com" aria-label="Instagram">
-            <Instagram className="hover:text-pink-500" />
+          <a href={mapsLink} aria-label="Location on Google Maps">
+            <MapPin className="hover:text-green-500" />
           </a>
         </div>
       </div>
