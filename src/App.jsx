@@ -1,12 +1,12 @@
 import Navbar from "./components/Navbar"
-import HeroSection from "./components/HeroSection"
 import Footer from "./components/Footer"
+import HomePage from "./pages/HomePage"
 
 const App = () => {
   return (
     <>
       <Navbar />
-      <HeroSection />
+      <HomePage />
       <Footer />
     </>
   )
