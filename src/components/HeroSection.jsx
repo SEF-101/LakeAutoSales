@@ -20,7 +20,7 @@ const HeroSection = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 flex flex-col items-center text-center space-y-6 p-8 bg-white bg-opacity-60 rounded-lg shadow-lg backdrop-blur-lg">
-        <h1 className="text-4xl font-bold text-neutral-900">Discover Your Dream Car</h1>
+        <h1 className="text-4xl font-bold text-neutral-900">Shop Affordable Cars</h1>
         <p className="text-lg text-neutral-800 max-w-md">
           Lakes Auto Sales offers a curated selection of top-quality vehicles for every driver.
         </p>
