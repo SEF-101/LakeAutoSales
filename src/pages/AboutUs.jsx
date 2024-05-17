@@ -1,8 +1,7 @@
 import React from 'react';
 
 const AboutUs = () => {
-    const mapsLink =
-        'https://maps.google.com/maps?q=2240%20Mannheim%20Rd,%20Melrose%20Park,%20IL,%2060164&t=&z=13&ie=UTF8&iwloc=&output=embed';
+    const mapsLink = 'https://maps.google.com/maps?q=2240%20Mannheim%20Rd,%20Melrose%20Park,%20IL,%2060164&t=&z=13&ie=UTF8&iwloc=&output=embed';
 
     return (
         <div className="flex">
