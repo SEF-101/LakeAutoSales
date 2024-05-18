@@ -1,5 +1,5 @@
 // Footer.jsx
-import { Facebook, Twitter, MapPin } from "lucide-react"
+import { Bug, KeyRound, MapPin } from "lucide-react"
 import { navItems } from "../constants"
 
 const Footer = () => {
@@ -28,14 +28,14 @@ const Footer = () => {
 
         {/* icons */}
         <div className="flex space-x-4">
-          <a href="https://facebook.com" aria-label="Facebook">
-            <Facebook className="hover:text-blue-500" />
-          </a>
-          <a href="https://twitter.com" aria-label="Twitter">
-            <Twitter className="hover:text-blue-400" />
-          </a>
           <a href={mapsLink} aria-label="Location on Google Maps">
             <MapPin className="hover:text-green-500" />
+          </a>
+          <a href="" aria-label="Login">
+          <KeyRound className="hover:text-blue-500" />
+          </a>
+          <a href="" aria-label="Report a bug">
+          <Bug className="hover:text-red-500" />
           </a>
         </div>
       </div>
