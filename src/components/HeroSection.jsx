@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const HeroSection = () => {
   return (
     <section className="relative flex items-center justify-center h-screen">
@@ -23,9 +25,11 @@ const HeroSection = () => {
         <p className="text-lg text-neutral-800 max-w-md">
           Lakes Auto Sales offers a curated selection of top-quality vehicles for every driver.
         </p>
-        <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500">
-          Shop Our Inventory
-        </button>
+        <Link to="/inventory">
+          <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500">
+            Shop Our Inventory
+          </button>
+        </Link>
       </div>
     </section>
   );
