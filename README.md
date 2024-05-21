@@ -2,7 +2,9 @@
 
 Using react + vite and tailwindcss
 
-To run this website (dev):
+Utilizing Firebase for hosting and backend
+
+**To run this website (dev):**
 - Clone repository
 - Open terminal and run "npm install"
 - Run "npm run dev" and site will open on localhost
