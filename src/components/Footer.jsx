@@ -1,6 +1,7 @@
 import { Bug, KeyRound, MapPin } from "lucide-react";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import { navItems } from "../constants";
+import {Link} from 'react-router-dom';
 
 const Footer = () => {
   const address = "2240 Mannheim Rd, Melrose Park, IL, 60164";
@@ -39,14 +40,14 @@ const Footer = () => {
           </a>
           <ReactTooltip id="mapsTip" place="top" effect="solid" />
 
-          <a
-            href=""
+          <Link
+            to="/login"
             aria-label="Login"
             data-tooltip-id="loginTip"
             data-tooltip-content="Login"
           >
             <KeyRound className="hover:text-blue-500" />
-          </a>
+          </Link>
           <ReactTooltip id="loginTip" place="top" effect="solid" />
 
           <a
