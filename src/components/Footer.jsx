@@ -27,7 +27,7 @@ const Footer = () => {
           ))}
         </ul>
 
-        {/* icons */}
+        {/* icons (hover effect needs fixing)*/}
         <div className="flex space-x-4">
           <a
             href={mapsLink}
