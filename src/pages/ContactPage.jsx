@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Helmet from 'react-helmet';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -26,6 +27,9 @@ const ContactPage = () => {
 
   return (
     <div className="container mx-auto py-10 px-4 max-w-md">
+      <Helmet>
+        <title>Lakes Auto Sales | Contact Us</title>
+      </Helmet>
       <h1 className="text-3xl font-bold mb-6">Contact Us</h1>
       <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
         <label className="flex flex-col">
