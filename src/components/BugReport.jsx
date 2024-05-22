@@ -1,7 +1,7 @@
-// src/components/Modal.jsx
+// src/components/BugReport.jsx
 import React from 'react';
 
-const Modal = ({ isOpen, onClose, children }) => {
+const BugReport = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
   return (
@@ -19,4 +19,4 @@ const Modal = ({ isOpen, onClose, children }) => {
   );
 };
 
-export default Modal;
+export default BugReport;
