@@ -57,26 +57,30 @@ const Footer = () => {
 
         {/* icons */}
         <div className="flex space-x-4">
-          <a
-            href={mapsLink}
-            aria-label="Location on Google Maps"
-            data-tooltip-id="mapsTip"
-            data-tooltip-content="Location on Google Maps"
-          >
-            <MapPin className="hover:text-green-500" />
-          </a>
-          <ReactTooltip id="mapsTip" place="top" effect="solid" />
+          <div>
+            <a
+              href={mapsLink}
+              aria-label="Location on Google Maps"
+              data-tooltip-id="mapsTip"
+              data-tooltip-content="Location on Google Maps"
+            >
+              <MapPin className="hover:text-green-500" />
+            </a>
+            <ReactTooltip id="mapsTip" place="top" effect="solid" />
+          </div>
 
-          <Link
-            to="/login"
-            aria-label="Login"
-            data-tooltip-id="loginTip"
-            data-tooltip-content="Login"
-          >
-            <KeyRound className="hover:text-blue-500" />
-          </Link>
-          <ReactTooltip id="loginTip" place="top" effect="solid" />
-
+          <div>
+            <Link
+              to="/login"
+              aria-label="Login"
+              data-tooltip-id="loginTip"
+              data-tooltip-content="Login"
+            >
+              <KeyRound className="hover:text-blue-500" />
+            </Link>
+            <ReactTooltip id="loginTip" place="top" effect="solid" />
+          </div>
+          <div>
           <button
             aria-label="Report a bug"
             data-tooltip-id="bugTip"
@@ -87,6 +91,7 @@ const Footer = () => {
             <Bug />
           </button>
           <ReactTooltip id="bugTip" place="top" effect="solid" />
+          </div>
         </div>
       </div>
 
