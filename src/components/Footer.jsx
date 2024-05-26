@@ -19,7 +19,7 @@ const Footer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission (e.g., send data to backend or third-party service)
+    // Handle form submission (send data to backend)
     alert('Bug report submitted successfully!');
     setIsBugReportOpen(false); // Close the BugReport after submission
     resetForm(); // Clear the form fields
