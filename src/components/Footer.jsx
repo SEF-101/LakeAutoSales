@@ -90,6 +90,7 @@ const Footer = () => {
         </div>
       </div>
 
+      {/* Bug Report Modal */}
       <BugReport isOpen={isBugReportOpen} onClose={handleCloseBugReport}>
         <h2 className="text-xl font-bold mb-4">Report a Bug</h2>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
