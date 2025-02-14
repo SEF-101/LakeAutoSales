@@ -6,7 +6,7 @@ const AboutUs = () => {
     "https://maps.google.com/maps?q=2240%20Mannheim%20Rd,%20Melrose%20Park,%20IL,%2060164&t=&z=13&ie=UTF8&iwloc=&output=embed";
 
   return (
-    <div className="flex flex-wrap lg:flex-nowrap bg-black p-6">
+    <div className="flex flex-wrap lg:flex-nowrap p-6">
       <Helmet>
         <title>Lakes Auto Sales | About Us</title>
       </Helmet>

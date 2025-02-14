@@ -11,17 +11,19 @@ import AdminDashboard from './pages/AdminDashboard';
 const App = () => {
   return (
     <Router>
-      <div>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/inventory" element={<Inventory/>} />
-          <Route path="/contact" element={<ContactPage/>} />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/admin-dashboard" element={<AdminDashboard/>} />
-        </Routes>
-        <Footer />
+      <div className="flex flex-col min-h-screen">
+        <div className="flex-grow">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/inventory" element={<Inventory/>} />
+            <Route path="/contact" element={<ContactPage/>} />
+            <Route path="/login" element={<Login/>} />
+            <Route path="/admin-dashboard" element={<AdminDashboard/>} />
+          </Routes>
+          </div>
+          <Footer />
       </div>
     </Router>
   )
