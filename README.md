@@ -1,6 +1,6 @@
 # Lakes Auto Website
 
-![Site Demo](./Frontend/public/Site demo.png)
+![Site Demo](Frontend/public/Site demo.png)
 
 This website has been created for the dealership Lakes Auto Sales. The website features a modern design and user-friendly interface to help customers browse and purchase vehicles.
 
