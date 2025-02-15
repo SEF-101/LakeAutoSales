@@ -16,7 +16,7 @@ const HeroSection = () => {
         ></iframe>
       </div>
 
-      {/* Prevents map from moving */}
+      {/* locks map in place*/}
       <div className="absolute inset-0 bg-black opacity-40"></div>
 
       {/* Overlayed text */}
@@ -26,7 +26,7 @@ const HeroSection = () => {
           Lakes Auto Sales offers a curated selection of top-quality vehicles for every driver.
         </p>
         <Link to="/inventory">
-          <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500">
+          <button className="px-6 py-2 bg-black text-white rounded-lg hover:bg-blue-950">
             Shop Our Inventory
           </button>
         </Link>
