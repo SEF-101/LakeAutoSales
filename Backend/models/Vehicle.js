@@ -45,7 +45,17 @@ const vehicleSchema = new mongoose.Schema({
         required: true,
         enum: ['Automatic', 'Manual']
     },
-
+    features: {
+        type: [String],
+        enum: [
+            'Air Conditioning', 'Power Windows', 'Power Locks', 'Power Steering', 'Tilt Wheel', 
+            'AM/FM CD', 'AM/FM CD/MP3', 'Satellite', 'Immobilizer', 'Keyless Entry', 
+            'Alarm', 'Daytime Running Lights', 'Dual Air Bags Front and Sides', 'Active Belts', 
+            'All Wheel ABS', 'Backup Camera', 'Bluetooth', 'Cruise Control', 'Navigation System', 
+            'Remote Start', 'Heated Seats', 'Leather Seats', 'Sunroof', 'Alloy Wheels', 
+            'Fog Lights', 'Parking Sensors', 'Third Row Seating', 'Tow Package'
+        ]
+    }
 });
 
 const Vehicle = mongoose.model('Vehicle', vehicleSchema);
