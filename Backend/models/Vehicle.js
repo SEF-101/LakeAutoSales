@@ -28,11 +28,6 @@ const vehicleSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    vin: {
-        type: String,
-        required: true,
-        unique: true
-    },
     description: {
         type: String
     },
@@ -50,7 +45,7 @@ const vehicleSchema = new mongoose.Schema({
         required: true,
         enum: ['Automatic', 'Manual']
     },
-    
+
 });
 
 const Vehicle = mongoose.model('Vehicle', vehicleSchema);
