@@ -20,41 +20,40 @@ This website has been created for the dealership Lakes Auto Sales. The website f
 
 ## Getting Started
 
-To run this website in development mode:
-
 1. Clone the repository:
     ```bash
     git clone https://github.com/yusef800/lakes_auto_vite.git
     ```
 
-2. Navigate to the project directory:
-    ```bash
-    cd lakes_auto_vite
-    ```
+## Frontend Deployment
 
-3. Install the dependencies:
+1. Navigate to the Frontend directory:
+    ```bash
+    cd Frontend
+    ``` 
+
+2. Install the dependencies:
     ```bash
     npm install
     ```
 
-4. Start the development server:
+3. Start the development server:
     ```bash
     npm run dev
     ```
 
 The site will open on `localhost`.
 
-## Deployment
+## Backend Deployment
 
-The website is hosted on Firebase (DISABLED). To deploy the latest version, use the following commands:
-
-1. Build the project:
+1. Navigate to the Backend directory:
     ```bash
-    npm run build
+    cd Backend
+    ``` 
+
+2. Start the development server:
+    ```bash
+    npm run dev
     ```
 
-2. Deploy to Firebase:
-    ```bash
-    firebase deploy
-    ```
 
