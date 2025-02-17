@@ -42,8 +42,6 @@ This website has been created for the dealership Lakes Auto Sales. The website f
     npm run dev
     ```
 
-The site will open on `localhost`.
-
 ## Backend Deployment
 
 1. Navigate to the Backend directory:
