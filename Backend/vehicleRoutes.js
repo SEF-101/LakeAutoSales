@@ -1,9 +1,7 @@
 const express = require('express')
-const database = require('./connect')
 const Vehicle = require('./models/Vehicle')
 
 let vehicleRoutes = express.Router()
-
 
 // GET all vehicles
 vehicleRoutes.route('/vehicles/all').get(async (req, res) => {

@@ -9,10 +9,6 @@ app.use(express.json())
 app.use(cors())
 app.use("/api", vehicleRoutes)
 
-app.get("/api", (req, res) => {
-  res.send("Hello World")
-});
-
 app.listen(5000, () => {
   connect.connectToServer()
   console.log("Server is running on port 5000")});
