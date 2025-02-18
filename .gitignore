@@ -13,3 +13,5 @@ stats.html
 .eslintcache
 
 .firebase
+.env
+config.env
