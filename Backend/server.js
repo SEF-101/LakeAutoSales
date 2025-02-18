@@ -1,15 +1,13 @@
 const express = require('express')
 const connect = require('./connect')
-const mongoose = require('mongoose')
 const cors = require('cors')
+const vehicleRoutes = require('./vehicleRoutes')
 
 const app = express()
 
 app.use(express.json())
 app.use(cors())
-
-mongoose
-
+app.use("/api", vehicleRoutes)
 
 app.get("/api", (req, res) => {
   res.send("Hello World")

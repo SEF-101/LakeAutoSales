@@ -56,7 +56,7 @@ const vehicleSchema = new mongoose.Schema({
             'Fog Lights', 'Parking Sensors', 'Third Row Seating', 'Tow Package'
         ]
     }
-});
+}, {collection: 'vehicles'});
 
 const Vehicle = mongoose.model('Vehicle', vehicleSchema);
 

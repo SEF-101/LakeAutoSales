@@ -1,22 +1,13 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
-require('dotenv').config({path: "./config.env"});
+const mongoose = require('mongoose');
+require('dotenv').config({ path: "./config.env" });
 
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(process.env.ATLAS_URI, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
+const connectToServer = async () => {
+  try {
+    await mongoose.connect(process.env.ATLAS_URI);
+    console.log('Connected to MongoDB using Mongoose');
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error);
   }
-});
+};
 
-let database
-
-module.exports = {
-    connectToServer: () => {
-        database = client.db("dealership")
-    },
-    getDb: () => {
-        return database
-    }
-}
+module.exports = { connectToServer };
