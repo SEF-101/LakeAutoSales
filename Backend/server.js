@@ -2,12 +2,14 @@ const express = require('express')
 const connect = require('./connect')
 const cors = require('cors')
 const vehicleRoutes = require('./vehicleRoutes')
+const authRoutes = require('./authRoutes')
 
 const app = express()
 
 app.use(express.json())
 app.use(cors())
 app.use("/api", vehicleRoutes)
+app.use("/api", authRoutes)
 
 app.listen(5000, () => {
   connect.connectToServer()
