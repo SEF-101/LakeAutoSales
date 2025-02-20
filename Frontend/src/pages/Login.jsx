@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Helmet from 'react-helmet';
-import { getDocs, collection, query, where } from "firebase/firestore";
-import { db, auth } from "../firebase";
-import { signInWithPhoneNumber, RecaptchaVerifier } from "firebase/auth";
 
 function Login() {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
   const [verificationCode, setVerificationCode] = useState("");
   const [isVerifying, setIsVerifying] = useState(false);
   const [confirmationResult, setConfirmationResult] = useState(null);
@@ -28,41 +25,83 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      const q = query(collection(db, "logins"), where("username", "==", username), where("password", "==", password));
-      const querySnapshot = await getDocs(q);
+      // Fetch all users
+      const response = await fetch("http://localhost:5000/api/users/all", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Error fetching users: ${errorText}`);
+      }
+  
+      const users = await response.json();
+  
+      if (users.length > 0) {
+        // Check for matching username and password
+        const user = users.find(
+          (u) => u.username === username && u.password === password
+        );
+  
+        if (user) {
+          setEmail(user.email);
 
-      if (!querySnapshot.empty) {
-        const userDoc = querySnapshot.docs[0].data();
-        setPhoneNumber(userDoc.phoneNumber);
-
-        // proceed to recaptcha verification if login correct
-        window.recaptchaVerifier = new RecaptchaVerifier(auth,'recaptcha-container', {
-          'size': 'invisible',
-          'callback': (response) => {
+          // If user is found, send OTP request to the backend
+          const otpResponse = await fetch("http://localhost:5000/api/send-otp", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email: user.email }),
+          });
+  
+          if (!otpResponse.ok) {
+            const errorText = await otpResponse.text();
+            throw new Error(`Error sending OTP: ${errorText}`);
           }
-        }, auth);
-
-        // confirm code with user and if correct proceed
-        const confirmationResult = await signInWithPhoneNumber(auth, userDoc.phoneNumber, window.recaptchaVerifier);
-        setConfirmationResult(confirmationResult);
-        setIsVerifying(true);
+  
+          const otpData = await otpResponse.json();
+  
+          setIsVerifying(true); // Show OTP input field
+        } else {
+          alert("Invalid username or password");
+        }
       } else {
-        console.log("Invalid username or password");
+        alert("No users found or server error");
       }
     } catch (error) {
-      console.error("Error checking credentials: ", error);
+      console.error("Error during login:", error);
+      alert("An error occurred. Please try again.");
     }
   };
+  
 
   const handleVerifyCode = async (e) => {
     e.preventDefault();
     try {
-      await confirmationResult.confirm(verificationCode);
-      navigate("/admin-dashboard");
+      const response = await fetch("http://localhost:5000/api/verify-otp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: email, otp: verificationCode }),
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        navigate("/admin-dashboard");
+      } else {
+        alert(data.error || "Invalid OTP");
+      }
     } catch (error) {
-      console.error("Error verifying code: ", error);
+      console.error("Error verifying OTP:", error);
+      alert("An error occurred. Please try again.");
     }
   };
 

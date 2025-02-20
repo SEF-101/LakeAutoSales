@@ -13,18 +13,28 @@ const storeOTP = (email, otp) => {
 
 // verify the code
 const verifyOTP = (email, otp) => {
-  if (!otpStorage[email]) return { valid: false, message: "No OTP found for this email" };
+  console.log(`Verifying OTP for email: ${email}`);
+
+  if (!otpStorage[email]) {
+    console.log(`No OTP found for email: ${email}`);
+    return { valid: false, message: "No OTP found for this email" };
+  }
 
   const { otp: storedOTP, expiresAt } = otpStorage[email];
 
-  if (Date.now() > expiresAt) { // need better way to dispose of expired code
+  if (Date.now() > expiresAt) {
+    console.log(`OTP for email: ${email} has expired`);
     delete otpStorage[email];
     return { valid: false, message: "OTP has expired" };
   }
 
-  if (otp !== storedOTP) return { valid: false, message: "Invalid OTP" };
+  if (otp !== storedOTP) {
+    console.log(`Invalid OTP for email: ${email}`);
+    return { valid: false, message: "Invalid OTP" };
+  }
 
-  delete otpStorage[email]; // when verifies, remove it
+  console.log(`OTP for email: ${email} verified successfully`);
+  delete otpStorage[email];
   return { valid: true, message: "OTP verified successfully" };
 };
 
