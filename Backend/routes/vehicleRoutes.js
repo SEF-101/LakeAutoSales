@@ -1,7 +1,7 @@
 const express = require('express')
-const Vehicle = require('./models/Vehicle')
+const Vehicle = require('../models/Vehicle')
 
-let vehicleRoutes = express.Router()
+const vehicleRoutes = express.Router()
 
 // GET all vehicles
 vehicleRoutes.route('/vehicles/all').get(async (req, res) => {
