@@ -7,24 +7,24 @@ const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString()
 const storeOTP = (email, otp) => {
   otpStorage[email] = {
     otp,
-    expiresAt: Date.now() + 5 * 60 * 1000, // Expiry: 5 minutes
+    expiresAt: Date.now() + 5 * 60 * 1000, // make it expure in 5 min
   };
 };
 
-// Verify the OTP
+// verify the code
 const verifyOTP = (email, otp) => {
   if (!otpStorage[email]) return { valid: false, message: "No OTP found for this email" };
 
   const { otp: storedOTP, expiresAt } = otpStorage[email];
 
-  if (Date.now() > expiresAt) {
+  if (Date.now() > expiresAt) { // need better way to dispose of expired code
     delete otpStorage[email];
     return { valid: false, message: "OTP has expired" };
   }
 
   if (otp !== storedOTP) return { valid: false, message: "Invalid OTP" };
 
-  delete otpStorage[email]; // OTP verified, remove it
+  delete otpStorage[email]; // when verifies, remove it
   return { valid: true, message: "OTP verified successfully" };
 };
 

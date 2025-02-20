@@ -1,8 +1,8 @@
 const express = require('express')
-const connect = require('./connect')
+const connect = require('./utils/connectDB')
 const cors = require('cors')
-const vehicleRoutes = require('./vehicleRoutes')
-const authRoutes = require('./authRoutes')
+const vehicleRoutes = require('./routes/vehicleRoutes')
+const authRoutes = require('./routes/authRoutes')
 
 const app = express()
 

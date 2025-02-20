@@ -1,12 +1,12 @@
 const express = require("express");
-const sendOTP = require("./utils/sendEmail");
-const { generateOTP, storeOTP, verifyOTP } = require("./utils/otp");
+const sendOTP = require("../utils/sendEmail");
+const { generateOTP, storeOTP, verifyOTP } = require("../utils/otp");
 
 const authRouter = express.Router();
 
 // sends OTP
 authRouter.post("/send-otp", async (req, res) => {
-  const { email } = req.body;
+  const email = req.body;
   if (!email) {
     return res.status(400).json({ error: "Email is required" });
   }
@@ -15,7 +15,7 @@ authRouter.post("/send-otp", async (req, res) => {
   storeOTP(email, otp);
 
   await sendOTP(email, otp);
-  res.json({ message: "OTP sent successfully" });
+  res.json({ message: "OTP sent to" + email });
 });
 
 // verifies otp
