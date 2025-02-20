@@ -1,9 +1,9 @@
-let otpStorage = {}; // In-memory storage (use Redis or DB for production)
+let otpStorage = {}; // in memory storage, probably need redis or db for prod
 
-// Generate a random 6-digit OTP
+// create random 6 digit code
 const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString();
 
-// Store OTP for the email
+// store it in memeory
 const storeOTP = (email, otp) => {
   otpStorage[email] = {
     otp,

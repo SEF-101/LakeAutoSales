@@ -8,7 +8,6 @@ function Login() {
   const [password, setPassword] = useState("");
   const [verificationCode, setVerificationCode] = useState("");
   const [isVerifying, setIsVerifying] = useState(false);
-  const [confirmationResult, setConfirmationResult] = useState(null);
   const navigate = useNavigate();
 
   const handleUsernameChange = (e) => {
