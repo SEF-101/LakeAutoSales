@@ -17,6 +17,37 @@ const fakeInventory = Array.from({ length: 20 }, (_, i) => ({
 }));
 
 const Inventory = () => {
+  const [inventory, setInventory] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchInventory = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/vehicles/all");
+        if (!response.ok) {
+          throw new Error(`Error fetching inventory: ${response.statusText}`);
+        }
+        const data = await response.json();
+        setInventory(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchInventory();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <HelmetProvider>
       <>
@@ -26,7 +57,7 @@ const Inventory = () => {
         <div className="container mx-auto p-4">
           <h1 className="text-3xl font-bold text-center mb-6">Our Inventory!</h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {fakeInventory.map((car) => (
+            {inventory.map((car) => (
               <Link to={`/car/${car.id}`} key={car.id} className="bg-slate-700 shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition">
                 <img src={car.imageUrl} alt={`${car.make} ${car.model}`} className="w-full h-48 object-cover" />
                 <div className="p-4">
