@@ -3,10 +3,10 @@ import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 import HomePage from "./pages/HomePage"
 import Inventory from "./pages/Inventory"
-import AboutUs from './pages/AboutUs';
-import ContactPage from './pages/ContactPage';
-import Login from './pages/Login';
-import AdminDashboard from './pages/AdminDashboard';
+import AboutUs from './pages/AboutUs'
+import ContactPage from './pages/ContactPage'
+import Login from './pages/Login'
+import AdminDashboard from './pages/AdminDashboard'
 
 const App = () => {
   return (
