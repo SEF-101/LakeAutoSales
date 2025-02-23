@@ -5,8 +5,6 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN npm ci
-RUN npm install esbuild@0.21.5
-
 
 COPY . .
 
