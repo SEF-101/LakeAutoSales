@@ -1,0 +1,20 @@
+node_modules
+
+# log files
+*.log
+
+# build artifacts
+dist
+build
+
+# local environment files
+.env
+config.env
+
+# docker-related files
+Dockerfile
+docker-compose.yml
+
+# other temporary files
+.vscode
+.DS_Store
