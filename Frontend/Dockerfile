@@ -1,12 +1,12 @@
-FROM node:latest AS builder
+FROM node:18-bookworm-slim
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN rm -rf node_modules package-lock.json
+RUN npm ci
+RUN npm install esbuild@0.21.5
 
-RUN npm install
 
 COPY . .
 
