@@ -1,5 +1,5 @@
 const express = require('express')
-const connect = require('./utils/connectDB')
+const connect = require('./db/connectDB')
 const cors = require('cors')
 const vehicleRoutes = require('./routes/vehicleRoutes')
 const authRoutes = require('./routes/authRoutes')
