@@ -4,6 +4,7 @@ const cors = require('cors')
 const vehicleRoutes = require('./routes/vehicleRoutes')
 const authRoutes = require('./routes/authRoutes')
 const userRoutes = require('./routes/userRoutes')
+const contactRoutes = require('./routes/contactRoutes')
 
 const app = express()
 
@@ -12,6 +13,7 @@ app.use(cors())
 app.use("/api", vehicleRoutes)
 app.use("/api", authRoutes)
 app.use("/api", userRoutes)
+app.use("/api", contactRoutes)
 
 app.listen(5000, () => {
   connect.connectToServer()

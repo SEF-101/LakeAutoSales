@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Helmet from 'react-helmet';
+import axios from 'axios';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -8,21 +9,30 @@ const ContactPage = () => {
     message: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
+
   // Update form data state
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submission (calls backend or third-party service)
-  const handleSubmit = (e) => {
+  // Handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
 
-    // Example of using a third-party service like EmailJS (or custom backend)
-    // emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target, 'YOUR_USER_ID')
-    //   .then((result) => { console.log(result.text); }, (error) => { console.log(error.text); });
-
-    alert("Form submitted successfully!"); // Temporary feedback
+    try {
+      const response = await axios.post('http://localhost:5000/api/contacts', formData); // remove local host
+      alert("Form submitted successfully!");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      setError("Error submitting the form. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -65,11 +75,13 @@ const ContactPage = () => {
             required
           ></textarea>
         </label>
+        {error && <p className="text-red-500">{error}</p>}
         <button
           type="submit"
           className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500"
+          disabled={isSubmitting}
         >
-          Send Message
+          {isSubmitting ? "Sending..." : "Send Message"}
         </button>
       </form>
     </div>

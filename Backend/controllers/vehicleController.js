@@ -5,7 +5,7 @@ const getAllVehicles = async (req, res) => {
   console.log('GET /vehicles/all request received');
   let data = await Vehicle.find({});
   if (data.length > 0) {
-    console.log('Vehicles found:', data);
+    console.log('Vehicles found');
     res.json(data);
   } else {
     console.log('No vehicles found');
@@ -19,7 +19,7 @@ const getVehicleById = async (req, res) => {
   try {
     let data = await Vehicle.findById(req.params.id);
     if (data) {
-      console.log('Vehicle found:', data);
+      console.log('Vehicle found');
       res.json(data);
     } else {
       console.log('No vehicle found with id:', req.params.id);
@@ -37,7 +37,7 @@ const createVehicle = async (req, res) => {
   try {
     const newVehicle = new Vehicle(req.body);
     const savedVehicle = await newVehicle.save();
-    console.log('Vehicle saved:', savedVehicle);
+    console.log('Vehicle posted');
     res.status(201).json(savedVehicle);
   } catch (error) {
     console.error('Error saving vehicle:', error.message);
@@ -51,7 +51,7 @@ const deleteVehicle = async (req, res) => {
   try {
     const deletedVehicle = await Vehicle.findByIdAndDelete(req.params.id);
     if (deletedVehicle) {
-      console.log('Vehicle deleted:', deletedVehicle);
+      console.log('Vehicle deleted');
       res.json({ message: "Vehicle deleted successfully" });
     } else {
       console.log('No vehicle found with id:', req.params.id);
