@@ -9,13 +9,17 @@ This website has been created for the dealership Lakes Auto Sales. The website f
 - **React**: A JavaScript library for building user interfaces.
 - **Vite**: A build tool that provides a faster and leaner development experience for modern web projects.
 - **Tailwind CSS**: A utility-first CSS framework for rapidly building custom user interfaces.
-- **Firebase**: Used for hosting and backend services, providing a reliable and scalable infrastructure.
+- **Express**: A minimal and flexible Node.js web application framework for building the backend.
+- **MongoDB**: A NoSQL database for storing and managing data.
+- **Nodemailer**: A module for Node.js applications to send emails.
+- **OTP Authentication**: In-house authentication using generated OTPs sent via email.
+- **Docker**: A platform for developing, shipping, and running applications in containers.
 
 ## Features
 
 - **Responsive Design**: Ensures the website looks great on all devices, from desktops to mobile phones.
 - **Interactive Map**: Displays the dealership's location using Google Maps.
-- **Comprehensive Inventory**: Showcases selection of cars the dealership offer
+- **Comprehensive Inventory**: Showcases the selection of cars the dealership offers.
 - **Admin Dashboard (IN DEV.)**: 
 
 ## Getting Started
@@ -49,9 +53,27 @@ This website has been created for the dealership Lakes Auto Sales. The website f
     cd Backend
     ``` 
 
-2. Start the development server:
+2. Install the dependencies:
+    ```bash
+    npm install
+    ```
+
+3. Start the development server:
     ```bash
     npm run dev
     ```
 
+## Docker Deployment
+This will run both backend and frontend in their respective containers
 
+1. Build the Docker images:
+    ```bash
+    docker-compose build
+    ```
+
+2. Start the containers:
+    ```bash
+    docker-compose up
+    ```
+
+3. Access the application at `http://localhost:5173`
