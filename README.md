@@ -31,6 +31,8 @@ This website has been created for the dealership Lakes Auto Sales. The website f
 
 ## Frontend Deployment
 
+*Skip if using Docker container.*
+
 1. Navigate to the Frontend directory:
     ```bash
     cd Frontend
@@ -48,32 +50,48 @@ This website has been created for the dealership Lakes Auto Sales. The website f
 
 ## Backend Deployment
 
-1. Navigate to the Backend directory:
+*Skip if using Docker container.*
+
+1. Ensure you have a `config.env` file in the Backend directory with the following environment variables:
+    ```
+    ATLAS_URI=your_mongodb_uri
+    EMAIL_USER=your_email_user
+    EMAIL_PASS=your_email_password
+    ```
+
+2. Navigate to the Backend directory:
     ```bash
     cd Backend
     ``` 
 
-2. Install the dependencies:
+3. Install the dependencies:
     ```bash
     npm install
     ```
 
-3. Start the development server:
+4. Start the development server:
     ```bash
     npm run dev
     ```
 
 ## Docker Deployment
-This will run both backend and frontend in their respective containers
+This will run both backend and frontend in their respective containers.
 
-1. Build the Docker images:
+1. Ensure you have a `.env` file in the root directory with the following environment variables:
+    ```
+    ATLAS_URI=your_mongodb_uri
+    EMAIL_USER=your_email_user
+    EMAIL_PASS=your_email_password
+    ```
+
+2. Build the Docker images:
     ```bash
     docker-compose build
     ```
 
-2. Start the containers:
+3. Start the containers:
     ```bash
     docker-compose up
     ```
 
-3. Access the application at `http://localhost:5173`
+4. Access the application at `http://localhost:5173`
