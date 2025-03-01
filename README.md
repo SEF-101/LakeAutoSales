@@ -75,7 +75,7 @@ This website has been created for the dealership Lakes Auto Sales. The website f
     ```
 
 ## Docker Deployment
-This will run both backend and frontend in their respective containers.
+This will run both backend and frontend in their respective containers. Nodemon and Vite hot-reloading will still work (As of 3/1/25).
 
 1. Ensure you have a `.env` file in the root directory with the following environment variables:
     ```
