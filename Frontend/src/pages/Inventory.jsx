@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Card } from "flowbite-react";
-import CarDetails from "./CarDetails";
+import CarDetails from "../components/CarDetailsModal";
 
 const Inventory = () => {
   const [selectedCar, setSelectedCar] = useState(null);
@@ -83,17 +83,7 @@ const Inventory = () => {
           </div>
         </div>
         {selectedCar && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-black p-6 rounded-lg shadow-lg max-w-screen w-full relative">
-              <button
-                onClick={handleCloseModal}
-                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-              >
-                &times;
-              </button>
-              <CarDetails car={selectedCar} />
-            </div>
-          </div>
+          <CarDetails car={selectedCar} isOpen={true} onClose={handleCloseModal} />
         )}
       </>
     </HelmetProvider>
