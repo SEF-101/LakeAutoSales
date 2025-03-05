@@ -5,7 +5,7 @@ const getAllVehicles = async (req, res) => {
   console.log('GET /vehicles/all request received');
   let data = await Vehicle.find({});
   if (data.length > 0) {
-    console.log('Vehicles found');
+    //console.log('Vehicles found');
     res.json(data);
   } else {
     console.log('No vehicles found');
