@@ -1,7 +1,7 @@
 const User = require('../models/User');
 
 // GET all users
-const getAllUsers = async (res) => {
+const getAllUsers = async (req, res) => {
   console.log('GET /users/all request received');
   let data = await User.find({});
   if (data.length > 0) {
