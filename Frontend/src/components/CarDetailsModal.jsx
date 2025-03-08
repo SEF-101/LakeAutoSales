@@ -12,11 +12,10 @@ const CarDetails = ({ car, isOpen, onClose }) => {
   return (
     <Modal show={isOpen} onClose={onClose}>
       <Modal.Header>
-        {car.make} {car.model}
       </Modal.Header>
       <Modal.Body>
         <div>
-          <h1 className="text-3xl font-bold text-center mb-6">{car.make} {car.model}</h1>
+          <h1 className="text-3xl font-bold text-center mb-6">{car.year} {car.make} {car.model} {car.trim} </h1>
           <div className="flex flex-col md:flex-row">
             <img src={car.imageUrl} alt={`${car.make} ${car.model}`} className="w-full md:w-1/2 h-auto object-cover" />
             <div className="p-4">
@@ -32,12 +31,7 @@ const CarDetails = ({ car, isOpen, onClose }) => {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <button
-          onClick={onClose}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500"
-        >
-          Close
-        </button>
+      Interested in this vehicle? Contact us at (847)370-2940 or email us!
       </Modal.Footer>
     </Modal>
   );
