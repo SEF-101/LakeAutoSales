@@ -1,4 +1,3 @@
-import React from "react";
 import HeroSection from "../components/HeroSection";
 import Helmet from 'react-helmet';
 
