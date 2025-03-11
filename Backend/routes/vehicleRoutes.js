@@ -1,10 +1,10 @@
 const express = require('express');
-const { getAllVehicles, getVehicleById, createVehicle, deleteVehicle, updateVehicleState, getVehiclesByState } = require('../controllers/vehicleController');
+const { getAllActiveVehicles, getVehicleById, createVehicle, deleteVehicle, updateVehicleState, getVehiclesByState } = require('../controllers/vehicleController');
 
 const vehicleRoutes = express.Router();
 
 // GET all vehicles
-vehicleRoutes.route('/vehicles/all').get(getAllVehicles);
+vehicleRoutes.route('/vehicles/all').get(getAllActiveVehicles);
 
 // GET one vehicle
 vehicleRoutes.route('/vehicles/:id').get(getVehicleById);

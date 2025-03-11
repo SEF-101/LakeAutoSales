@@ -1,9 +1,9 @@
 const Vehicle = require('../models/Vehicle');
 
 // GET all vehicles
-const getAllVehicles = async (req, res) => {
+const getAllActiveVehicles = async (req, res) => {
   console.log('GET /vehicles/all request received');
-  let data = await Vehicle.find({});
+  let data = await Vehicle.find({state:'active'});
   if (data.length > 0) {
     //console.log('Vehicles found');
     res.json(data);
@@ -101,7 +101,7 @@ const updateVehicleState = async (req, res) => {
 
 
 module.exports = {
-  getAllVehicles,
+  getAllActiveVehicles,
   getVehicleById,
   createVehicle,
   deleteVehicle,
