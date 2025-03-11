@@ -63,9 +63,48 @@ const deleteVehicle = async (req, res) => {
   }
 };
 
+// Get vehicles by state (filtered)
+const getVehiclesByState = async (req, res) => {
+  const { state } = req.params; // Get state from URL params
+  if (!["drafted", "active", "past"].includes(state)) {
+    return res.status(400).json({ message: "Invalid state parameter" });
+  }
+
+  try {
+    const vehicles = await Vehicle.find({ state });
+    res.json(vehicles);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Update vehicle state (e.g., move from drafted to active)
+const updateVehicleState = async (req, res) => {
+  const { id } = req.params;
+  const { state } = req.body;
+
+  if (!["drafted", "active", "past"].includes(state)) {
+    return res.status(400).json({ message: "Invalid state value" });
+  }
+
+  try {
+    const updatedVehicle = await Vehicle.findByIdAndUpdate(
+      id,
+      { state },
+      { new: true }
+    );
+    res.json(updatedVehicle);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
 module.exports = {
   getAllVehicles,
   getVehicleById,
   createVehicle,
-  deleteVehicle
+  deleteVehicle,
+  getVehiclesByState,
+  updateVehicleState
 };

@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllVehicles, getVehicleById, createVehicle, deleteVehicle } = require('../controllers/vehicleController');
+const { getAllVehicles, getVehicleById, createVehicle, deleteVehicle, updateVehicleState, getVehiclesByState } = require('../controllers/vehicleController');
 
 const vehicleRoutes = express.Router();
 
@@ -14,5 +14,11 @@ vehicleRoutes.route('/vehicles').post(createVehicle);
 
 // DELETE one vehicle
 vehicleRoutes.route('/vehicles/:id').delete(deleteVehicle);
+
+// Update vehicle state (e.g., drafted → active)
+vehicleRoutes.put("/vehicles/:id/state", updateVehicleState);
+
+// Get vehicles by state
+vehicleRoutes.get("/vehicles/state/:state", getVehiclesByState);
 
 module.exports = vehicleRoutes;

@@ -55,7 +55,12 @@ const vehicleSchema = new mongoose.Schema({
             'Remote Start', 'Heated Seats', 'Leather Seats', 'Sunroof', 'Alloy Wheels', 
             'Fog Lights', 'Parking Sensors', 'Third Row Seating', 'Tow Package'
         ]
-    }
+    },
+    state: {
+        type: String,
+        enum: ["drafted", "active", "past"],
+        default: "drafted",
+      },
 }, {collection: 'vehicles'});
 
 const Vehicle = mongoose.model('Vehicle', vehicleSchema);
