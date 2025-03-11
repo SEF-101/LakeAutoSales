@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import NewCarModal from "../NewCarModal";
 import { Card, Button } from "flowbite-react";
 import { Plus } from "lucide-react";
 
@@ -9,11 +10,16 @@ const AllListingsCard = () => {
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [listingCounts, setListingCounts] = useState({
     drafted: 0,
     active: 0,
     past: 0,
   });
+
+  const refreshListings = () => {
+    console.log("Refreshing listings after adding a new car...");
+  };
 
   // Fetch vehicles for the selected category
   const fetchListings = async (category) => {
@@ -74,7 +80,7 @@ const AllListingsCard = () => {
               All Current Listings
             </h5>
           </div>
-          <Button gradientMonochrome="info" className="ml-auto">
+          <Button gradientMonochrome="info" className="ml-auto" onClick={() => setIsModalOpen(true)}>
             <Plus className="mr-2 h-5 w-5" /> New Car
           </Button>
         </div>
@@ -132,6 +138,7 @@ const AllListingsCard = () => {
           !loading && <p className="text-center text-lg">No listings found.</p>
         )}
       </div>
+      <NewCarModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onCarAdded={refreshListings} />
     </div>
   );
 };
