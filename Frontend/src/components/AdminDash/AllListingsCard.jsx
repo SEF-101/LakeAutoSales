@@ -1,24 +1,68 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Button } from "flowbite-react";
 import { Plus } from "lucide-react";
 
-const sampleListings = {
-  drafted: [
-    { _id: 1, make: "Honda", model: "Accord", year: "2020", price: "22500", mileage: "30,000", imageUrl: "https://via.placeholder.com/300" },
-    { _id: 2, make: "Toyota", model: "Camry", year: "2019", price: "21000", mileage: "40,000", imageUrl: "https://via.placeholder.com/300" },
-  ],
-  active: [
-    { _id: 3, make: "Ford", model: "Mustang", year: "2022", price: "35000", mileage: "10,000", imageUrl: "https://via.placeholder.com/300" },
-    { _id: 4, make: "Tesla", model: "Model 3", year: "2023", price: "42500", mileage: "5,000", imageUrl: "https://via.placeholder.com/300" },
-  ],
-  past: [
-    { _id: 5, make: "Chevrolet", model: "Malibu", year: "2018", price: "18000", mileage: "50,000", imageUrl: "https://via.placeholder.com/300" },
-    { _id: 6, make: "Nissan", model: "Altima", year: "2017", price: "15500", mileage: "60,000", imageUrl: "https://via.placeholder.com/300" },
-  ],
-};
+const API_URL = "http://localhost:5000/api/vehicles/state"; // Base API endpoint
 
 const AllListingsCard = () => {
   const [selectedCategory, setSelectedCategory] = useState("active");
+  const [listings, setListings] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [listingCounts, setListingCounts] = useState({
+    drafted: 0,
+    active: 0,
+    past: 0,
+  });
+
+  // Fetch vehicles for the selected category
+  const fetchListings = async (category) => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch(`${API_URL}/${category}`);
+      if (!response.ok) throw new Error("Failed to fetch vehicles.");
+
+      const data = await response.json();
+      setListings(data);
+    } catch (err) {
+      setError(err.message);
+      setListings([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Fetch total counts for all categories once
+  const fetchCounts = async () => {
+    try {
+      const categories = ["drafted", "active", "past"];
+      const counts = {};
+
+      for (const category of categories) {
+        const response = await fetch(`${API_URL}/${category}`);
+        if (!response.ok) throw new Error(`Failed to fetch ${category} count`);
+
+        const data = await response.json();
+        counts[category] = data.length;
+      }
+
+      setListingCounts(counts);
+    } catch (error) {
+      console.error("Error fetching counts:", error);
+    }
+  };
+
+  // Fetch listings when category changes
+  useEffect(() => {
+    fetchListings(selectedCategory);
+  }, [selectedCategory]);
+
+  // Fetch counts only once when the component loads
+  useEffect(() => {
+    fetchCounts();
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -51,32 +95,42 @@ const AllListingsCard = () => {
                 {category} Listings
               </p>
               <p className="text-7xl font-bold text-gray-900 dark:text-white">
-                {sampleListings[category].length}
+                {listingCounts[category]} {/* Number stays fixed */}
               </p>
             </div>
           ))}
         </div>
       </Card>
 
+      {/* Loading State */}
+      {loading && <p className="text-center text-lg font-semibold">Loading vehicles...</p>}
+
+      {/* Error State */}
+      {error && <p className="text-center text-red-500">{error}</p>}
+
       {/* Car Listings Below */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {sampleListings[selectedCategory].map((car) => (
-          <Card key={car._id} className="cursor-pointer">
-            <img
-              src={car.imageUrl}
-              alt={`${car.make} ${car.model}`}
-              className="w-full h-48 object-cover rounded-t-lg"
-            />
-            <div className="p-4">
-              <h2 className="text-xl font-semibold">
-                {car.make} {car.model}
-              </h2>
-              <p className="text-gray-700 dark:text-gray-400">Year: {car.year}</p>
-              <p className="text-gray-700 dark:text-gray-400">Price: ${car.price}</p>
-              <p className="text-gray-700 dark:text-gray-400">Mileage: {car.mileage} miles</p>
-            </div>
-          </Card>
-        ))}
+        {listings.length > 0 ? (
+          listings.map((car) => (
+            <Card key={car._id} className="cursor-pointer">
+              <img
+                src={car.imageUrl}
+                alt={`${car.make} ${car.model}`}
+                className="w-full h-48 object-cover rounded-t-lg"
+              />
+              <div className="p-4">
+                <h2 className="text-xl font-semibold">
+                  {car.make} {car.model}
+                </h2>
+                <p className="text-gray-700 dark:text-gray-400">Year: {car.year}</p>
+                <p className="text-gray-700 dark:text-gray-400">Price: ${car.price}</p>
+                <p className="text-gray-700 dark:text-gray-400">Mileage: {car.mileage} miles</p>
+              </div>
+            </Card>
+          ))
+        ) : (
+          !loading && <p className="text-center text-lg">No listings found.</p>
+        )}
       </div>
     </div>
   );
