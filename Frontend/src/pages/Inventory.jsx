@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Card } from "flowbite-react";
 import CarDetails from "../components/CarDetailsModal";
+import InventoryTitleCard from "../components/InventoryTitleCard";
 
 const Inventory = () => {
   const [selectedCar, setSelectedCar] = useState(null);
@@ -51,8 +52,8 @@ const Inventory = () => {
           <title>Lakes Auto Sales | Inventory</title>
         </Helmet>
         <div className="container mx-auto p-4">
-          <h1 className="text-3xl font-bold text-center mb-6">Our Inventory!</h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <InventoryTitleCard />
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {inventory.map((car) => (
               <Card
                 key={car._id}
