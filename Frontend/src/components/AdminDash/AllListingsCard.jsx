@@ -42,7 +42,7 @@ const AllListingsCard = () => {
               key={category}
               className={`flex-1 p-4 text-center cursor-pointer transition-colors ${
                 selectedCategory === category
-                  ? "bg-blue-500 text-white"
+                  ? "bg-blue-900 text-white"
                   : "hover:bg-gray-100 dark:hover:bg-gray-700"
               }`}
               onClick={() => setSelectedCategory(category)}
