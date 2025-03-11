@@ -1,6 +1,6 @@
 const Vehicle = require('../models/Vehicle');
 
-// GET all vehicles
+// GET all active vehicles
 const getAllActiveVehicles = async (req, res) => {
   console.log('GET /vehicles/all request received');
   let data = await Vehicle.find({state:'active'});
