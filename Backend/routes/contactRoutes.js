@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllContacts, createContact, respondToContact } = require('../controllers/contactController');
+const { getAllContacts, createContact, updateContact } = require('../controllers/contactController');
 
 const contactRoutes = express.Router();
 
@@ -10,6 +10,6 @@ contactRoutes.route('/contacts').get(getAllContacts);
 contactRoutes.route('/contacts').post(createContact);
 
 // UPDATE a contact submission with a response
-contactRoutes.route('/contacts/:id/respond').put(respondToContact);
+contactRoutes.route('/contacts/:id').patch(updateContact);
 
 module.exports = contactRoutes;

@@ -20,6 +20,9 @@ const contactSchema = new mongoose.Schema({
     responded: {
         type: Boolean,
         default: false
+    },
+    inquiringAbout: {
+        type: String
     }
 }, { collection: 'contacts'});
 

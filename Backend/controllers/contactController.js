@@ -23,22 +23,30 @@ const createContact = async (req, res) => {
 };
 
 // UPDATE a contact submission with a response
-const respondToContact = async (req, res) => {
+const updateContact = async (req, res) => {
   try {
     const { id } = req.params;
-    const { response } = req.body;
-    const updatedContact = await Contact.findByIdAndUpdate(id, { responded: true, response }, { new: true });
-    if (!updatedContact) {
-      return res.status(404).json({ message: 'Contact not found' });
+    const updates = req.body;
+    console.log("Updating contact with ID:", id);
+
+    // Ensure at least one field is provided for update
+    if (!updates || Object.keys(updates).length === 0) {
+      return res.status(400).json({ message: "No updates provided" });
     }
+
+    const updatedContact = await Contact.findByIdAndUpdate(id, updates, { new: true });
+
+    if (!updatedContact) {
+      return res.status(404).json({ message: "Contact not found" });
+    }
+
     res.status(200).json(updatedContact);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
-
 module.exports = {
   getAllContacts,
   createContact,
-  respondToContact
+  updateContact,
 };

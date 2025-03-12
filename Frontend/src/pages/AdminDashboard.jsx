@@ -1,6 +1,7 @@
 import AllListingsCard from "../components/AdminDash/AllListingsCard";
 import AdminTitleCard from "../components/AdminDash/AdminTitleCard";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import ContactMessages from "../components/AdminDash/ContactMessages";
 
 function AdminDashboard() {
   return (
@@ -11,6 +12,7 @@ function AdminDashboard() {
       </Helmet>
     <div className="container mx-auto p-6 space-y-6">
       <AdminTitleCard />
+      <ContactMessages />
       <AllListingsCard />
     </div>
     </>
