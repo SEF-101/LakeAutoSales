@@ -6,7 +6,7 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    carInquiry: "", // New optional field
+    carInquiry: "",
     message: "",
   });
 
@@ -28,7 +28,7 @@ const ContactSection = () => {
     try {
       await axios.post("http://localhost:5000/api/contacts", formData);
       alert("Form submitted successfully!");
-      setFormData({ name: "", email: "", carInquiry: "", message: "" });
+      setFormData({ name: "", email: "", inquiringAbout: "", message: "" });
     } catch (error) {
       setError("Error submitting the form. Please try again.");
     } finally {
@@ -84,8 +84,8 @@ const ContactSection = () => {
               </label>
               <TextInput
                 type="text"
-                name="carInquiry"
-                value={formData.carInquiry}
+                name="inquiringAbout"
+                value={formData.inquiringAbout}
                 onChange={handleInputChange}
                 className="mt-1"
                 placeholder="e.g., 2021 Honda Civic EX"
