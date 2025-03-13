@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import NewCarModal from "../NewCarModal";
+import NewCarModal from "./NewCarModal";
 import { Card, Button } from "flowbite-react";
 import { Plus } from "lucide-react";
 
