@@ -12,6 +12,7 @@ contactRoutes.route('/contacts').post(createContact);
 // UPDATE a contact submission with a response
 contactRoutes.route('/contacts/:id').patch(updateContact);
 
+// DELETE a contact submission
 contactRoutes.route('/contacts/:id').delete(deleteContact);
 
 module.exports = contactRoutes;
